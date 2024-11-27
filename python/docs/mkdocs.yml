@@ -1,0 +1,8 @@
+site_name: "aoc_2024"
+site_description: "aoc_2024_description"
+site_author: "Chess7th"
+
+theme: readthedocs
+
+pages:
+  - Home: index.md
