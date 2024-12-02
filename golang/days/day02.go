@@ -7,11 +7,15 @@ import (
 )
 
 func Day02(fileContent []string) {
+	part01(fileContent)
+}
+
+func part01(fileContent []string) {
 	var safeLevels int = 0
 	for line := range fileContent {
 		safeLevels += isLevelSafe(fileContent[line])
 	}
-	fmt.Println(safeLevels)
+	fmt.Println("Part 01:", safeLevels)
 }
 
 func isLevelSafe(level string) int {
@@ -39,7 +43,6 @@ func calculateDistance(i int, j int) int {
 	if tmpVal < 0 {
 		tmpVal = -tmpVal
 	}
-	fmt.Println(tmpVal)
 	return tmpVal
 }
 
