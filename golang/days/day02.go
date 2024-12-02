@@ -11,11 +11,18 @@ func Day02(fileContent []string) {
 }
 
 func part01(fileContent []string) {
-	var safeLevels int = 0
+	var safeLevels = 0
 	for line := range fileContent {
 		safeLevels += isLevelSafe(fileContent[line])
 	}
 	fmt.Println("Part 01:", safeLevels)
+}
+
+func part02(fileContent []string) {
+	var safeLevels = 0
+	for line := range fileContent {
+		safeLevels += isLevelSafe(fileContent[line])
+	}
 }
 
 func isLevelSafe(level string) int {
@@ -25,25 +32,6 @@ func isLevelSafe(level string) int {
 	}
 	return 1
 
-}
-
-func checkIfDistanceIsInBounds(tmpVal int) bool {
-	if tmpVal >= 1 {
-		if tmpVal <= 3 {
-			return true
-		}
-	} else {
-		return false
-	}
-	return false
-}
-
-func calculateDistance(i int, j int) int {
-	var tmpVal = i - j
-	if tmpVal < 0 {
-		tmpVal = -tmpVal
-	}
-	return tmpVal
 }
 
 func checkListOrdered(splitStringInt []int) bool {
@@ -60,19 +48,6 @@ func checkListOrdered(splitStringInt []int) bool {
 		eitherIncOrDec = false
 	}
 	return eitherIncOrDec
-}
-
-func convertLineToInt(level string) []int {
-	var splitString = strings.Fields(level)
-	var splitStringInt []int
-	for _, i := range splitString {
-		j, err := strconv.Atoi(i)
-		if err != nil {
-			panic(err)
-		}
-		splitStringInt = append(splitStringInt, j)
-	}
-	return splitStringInt
 }
 
 func checkListIsIncreasing(level []int) bool {
@@ -101,4 +76,36 @@ func checkListIsDecreasing(level []int) bool {
 		}
 	}
 	return true
+}
+
+func checkIfDistanceIsInBounds(tmpVal int) bool {
+	if tmpVal >= 1 {
+		if tmpVal <= 3 {
+			return true
+		}
+	} else {
+		return false
+	}
+	return false
+}
+
+func calculateDistance(i int, j int) int {
+	var tmpVal = i - j
+	if tmpVal < 0 {
+		tmpVal = -tmpVal
+	}
+	return tmpVal
+}
+
+func convertLineToInt(level string) []int {
+	var splitString = strings.Fields(level)
+	var splitStringInt []int
+	for _, i := range splitString {
+		j, err := strconv.Atoi(i)
+		if err != nil {
+			panic(err)
+		}
+		splitStringInt = append(splitStringInt, j)
+	}
+	return splitStringInt
 }
