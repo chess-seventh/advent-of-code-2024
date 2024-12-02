@@ -2,7 +2,10 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"os"
+	"sort"
+	"strings"
 
 	"github.com/spf13/cobra"
 )
@@ -41,10 +44,35 @@ func Execute() string {
 
 func init() {
 	cobra.OnInitialize()
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cobra.yaml)")
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	// rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
 	rootCmd.PersistentFlags().StringP("day", "d", "", "Day of the AoC 2024")
+}
+
+func ReadInputFile(daySelector string) string {
+	filename := fmt.Sprintf("inputs/day_%s.txt", daySelector)
+	content, err := os.ReadFile(filename)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	return string(content)
+}
+
+func ReadInputFileGood(daySelector string) []string {
+	filename := fmt.Sprintf("inputs/day_%s.txt", daySelector)
+	content, err := os.ReadFile(filename)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var lines = strings.Split(string(content), "\n")
+	return lines
+}
+
+func SortColumn(column []int) []int {
+	//var sortedColumn []int
+	sort.Slice(column, func(i, j int) bool {
+		return column[i] < column[j]
+	})
+	return column
 }

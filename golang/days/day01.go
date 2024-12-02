@@ -2,12 +2,14 @@ package days
 
 import (
 	"fmt"
-	"sort"
+	"github.com/chess-seventh/aoc_2024/cmd"
 	"strconv"
 	"strings"
 )
 
-func Day01(fileContent string, column1 []int, column2 []int) {
+func Day01(fileContent string) {
+	var column1 []int
+	var column2 []int
 	var part01Result = Day01part01(fileContent, column1, column2)
 	var part02Result = Day01part02(fileContent, column1, column2)
 	fmt.Println(part01Result)
@@ -19,8 +21,8 @@ func Day01part01(fileContent string, column1 []int, column2 []int) int {
 
 	column1, column2 = ExtractColumns(splitString, column1, column2)
 
-	column1 = SortColumn(column1)
-	column2 = SortColumn(column2)
+	column1 = cmd.SortColumn(column1)
+	column2 = cmd.SortColumn(column2)
 	return FindDistance(column1, column2)
 
 }
@@ -28,8 +30,8 @@ func Day01part01(fileContent string, column1 []int, column2 []int) int {
 func Day01part02(fileContent string, column1 []int, column2 []int) int {
 	var splitString = strings.Fields(fileContent)
 	column1, column2 = ExtractColumns(splitString, column1, column2)
-	column1 = SortColumn(column1)
-	column2 = SortColumn(column2)
+	column1 = cmd.SortColumn(column1)
+	column2 = cmd.SortColumn(column2)
 	numCount := make(map[int]int)
 
 	for i := 0; i < len(column1); i++ {
@@ -50,14 +52,6 @@ func Day01part02(fileContent string, column1 []int, column2 []int) int {
 		totalSum += key * value
 	}
 	return totalSum
-}
-
-func SortColumn(column []int) []int {
-	//var sortedColumn []int
-	sort.Slice(column, func(i, j int) bool {
-		return column[i] < column[j]
-	})
-	return column
 }
 
 func FindDistance(column1 []int, column2 []int) int {
