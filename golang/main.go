@@ -13,6 +13,8 @@ func main() {
 		days.Day01(fileContent)
 	} else if daySelector == "02" {
 		days.Day02(goodFileContent)
+	} else if daySelector == "03" {
+		days.Day03(fileContent)
 	}
 
 }
